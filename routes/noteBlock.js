@@ -23,8 +23,8 @@ route.get("/api/notes_block/title", (req, res) => {
 
 route.post("/api/notes_block", (req, res) => {
     if(!req.body.title || !req.body.description || !req.body.id) return res.status(400).send("There's no data");
-    const {title, description, id} = req.body;
-    const data = [title, description, id];
+    const {title, id} = req.body;
+    const data = [title, id];
     con.query(notesSql.add, data, err => {
         if(err){
             console.log(err);
@@ -33,6 +33,15 @@ route.post("/api/notes_block", (req, res) => {
         res.send("Your note has been saved");
     });
 });
+
+route.put("/api/notes_block", (req, res) => {
+    if(!req.body.description || !req.body.id_user || !req.body.id) return res.status(400).send("There's no data");
+    const {description, id_user, id} = req.body;
+    con.query(notesSql.modify, [description, id, id_user], err => {
+        if(err) return res.status(500).send("Some mistake happened");
+        res.send("Your note has been modified")
+    });
+})
 
 route.delete("/api/notes_block", (req, res) =>{
     if(!req.headers.id) return res.status(400).send("there's no data")
