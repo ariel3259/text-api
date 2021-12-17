@@ -43,10 +43,12 @@ This api is used to set and get text documents.
  
  . GET http://localhost:8000/api/notes_block/title : Get all user's documents by title. Needs three parameter by header, authorization (token), id_user, title(string)
  
- . POST http://localhost:8000/api/notes_block : Set a user's document. Needs four parameter, three by body and one by header, authorization (token, by header), title (string), description(string) and id(int).
+ . POST http://localhost:8000/api/notes_block : Set a user's document. Needs four parameter, two by body and one by header, authorization (token, by header), title (string) and id(int).
  
  . DELETE http://localhost:8000/api/notes_block : Delete a user's document by id, Needs two parameter by header, authorization (token) and id. 
 
+ . PUT http://localhost:8000/api/notes_block : Modifies a user's document. Needs three parameter by body and one by header, authorization(token, by header), description(string), id(int), id_user(int). 
+ 
   Note: user's document is a json object that has in the body: 
     
     . An integer as id
