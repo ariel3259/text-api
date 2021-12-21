@@ -22,7 +22,7 @@ route.get("/api/notes_block/title", (req, res) => {
 });
 
 route.post("/api/notes_block", (req, res) => {
-    if(!req.body.title || !req.body.description || !req.body.id) return res.status(400).send("There's no data");
+    if(!req.body.title || !req.body.id) return res.status(400).send("There's no data");
     const {title, id} = req.body;
     const data = [title, id];
     con.query(notesSql.add, data, err => {
